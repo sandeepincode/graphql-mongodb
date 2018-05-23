@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
 
+import mongoose from 'mongoose';
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     match: [
       /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-      `Your password must have at least 8 characters, 
+      `Your password must have at least 8 characters,
        one uppercase letter and one number`
     ]
   },

@@ -9,7 +9,7 @@ import resolvers from './Graphql/Resolvers/resolver';
 
 import { User } from './Mongoose/Schemas/user';
 
-mongoose.connect('mongodb://localhost/yournansdead');
+mongoose.connect('mongodb://localhost/test');
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -26,4 +26,4 @@ app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.listen(PORT);
 
-console.log('running');
+console.log(`Running On Port ${PORT}`);

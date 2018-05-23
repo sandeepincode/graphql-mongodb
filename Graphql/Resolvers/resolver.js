@@ -9,6 +9,11 @@ export default {
     },
     findUser: async (parent, args, { User }) => {
       const users = await User.find(args);
+
+      if (!users) {
+        return false;
+      }
+
       return users.map( x => {
         x._id = x._id.toString();
         return x;
@@ -20,11 +25,18 @@ export default {
       const user = await new User(args).save();
       user._id = user._id.toString();
       return user;
+    },
+    deleteUser: async (parent, args, { User }) => {
+      const user = await User.remove(args);
+      if (user.n && user.ok) {
+        return true;
+      }
+      return false;
     }
   }
 }
 
-
+//
 // mutation {
 //   createUser(
 //     firstName:"John",
@@ -38,7 +50,7 @@ export default {
 //       email
 //   }
 // }
-//
+
 // query {
 //   findUser(_id: "5adfab783cf14e0a27ff0234") {
 //     firstName,
