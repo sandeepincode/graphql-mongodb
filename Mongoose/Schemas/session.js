@@ -6,10 +6,6 @@ const sessionSchema = new mongoose.Schema({
     unique: true,
     required: true,
     trim: true,
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      `Please enter a email format`
-    ]
   },
   userAgent: {
     type: String,
@@ -18,11 +14,10 @@ const sessionSchema = new mongoose.Schema({
   ip: {
     type: String,
     trim: true
-  }
+  },
   created: {
     type: Date,
     default: Date.now
   }
 });
-
 export const Session = mongoose.model('Session', sessionSchema);

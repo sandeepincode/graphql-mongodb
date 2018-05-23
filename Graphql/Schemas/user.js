@@ -5,16 +5,14 @@ type User {
   secondName: String!
   email: String!
   registered: String!
-}
-type Session {
-  user_id: String!
-  userAgent: String!
-  ip: String!
-  created: String!
-}
+
 type Query {
   allUsers: [User!]!
   findUser(_id: String!): [User!]!
+  login(
+    email: String!,
+    password: String!
+  ): [String!]!
 }
 type Mutation {
   createUser(
