@@ -5,7 +5,7 @@ import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 
 import typeDefs from './Graphql/typeDefs';
-import resolvers from './Graphql/Resolvers/resolver';
+import resolvers from './Graphql/resolver';
 
 import { User } from './Mongoose/Schemas/user';
 import { Session } from './Mongoose/Schemas/session';

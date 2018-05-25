@@ -1,5 +1,6 @@
 
 import mongoose from 'mongoose';
+
 const sessionSchema = new mongoose.Schema({
   user_id: {
     type: String,
@@ -9,15 +10,16 @@ const sessionSchema = new mongoose.Schema({
   },
   userAgent: {
     type: String,
-    trim: true
+    trim: true,
   },
   ip: {
     type: String,
-    trim: true
+    trim: true,
   },
   created: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
+
 export const Session = mongoose.model('Session', sessionSchema);
