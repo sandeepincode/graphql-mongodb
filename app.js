@@ -1,13 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import {graphiqlExpress, graphqlExpress} from 'apollo-server-express';
-import {
-  makeExecutableSchema,
-  mergeSchemas
-} from 'graphql-tools';
+import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
+import { makeExecutableSchema } from 'graphql-tools';
 
-import typeDefs from './Graphql/Schemas/user';
+import typeDefs from './Graphql/typeDefs';
 import resolvers from './Graphql/Resolvers/resolver';
 
 import { User } from './Mongoose/Schemas/user';
