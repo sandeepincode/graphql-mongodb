@@ -1,3 +1,4 @@
+
 export default `
 type Session {
   user_id: String!

@@ -17,11 +17,24 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 
+const helperMiddleware = [
+  bodyParser.json(),
+  bodyParser.text({ type: 'application/graphql' }),
+  (req, res, next) => {
+    // console.log(req.headers);
+    if (req.is('application/graphql')) {
+      req.body = { query: req.body };
+    }
+    next();
+  },
+];
+
 const PORT = 3000;
 
 const app = express();
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { User, Session } }));
+app.use('/graphql', ...helperMiddleware, graphqlExpress({ schema, context: { User, Session } }));
+// app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { User, Session } }));
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 

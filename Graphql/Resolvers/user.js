@@ -24,15 +24,19 @@ export default {
       }
       const session = await new Session({
         user_id: user._id,
-        userAgent: 'your Maa',
         ip: '127.0.0.1',
+        userAgent: 'your Maa',
       }).save();
       return user._id;
     },
   },
   Mutation: {
-    createUser: async (parent, args, { User, Session }) => {
+    createUser: async (parent, args, { User, Session }, after, x) => {
       console.log(parent);
+      console.log(args);
+      console.log(after);
+      console.log(x)
+
       const user = await new User(args).save();
       user._id = user._id.toString();
       const session = await new Session({
