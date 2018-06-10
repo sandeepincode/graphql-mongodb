@@ -3,40 +3,52 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import {
-  fetchRequest
-} from '../redux/reducers/root';
+  login,
+  updateEmail,
+  updatePassword,
+} from '../../redux/reducers/login/login';
 
-function mapStateToProps({root}) {
-  const { ui, data } = root;
+function mapStateToProps({ login }) {
+  const { ui, data } = login;
   return {
-    loading: ui.loading,
-    error: ui.error,
-    response: data.response,
-  }
+    ui: {
+      loading: ui.loading,
+    },
+    data: {
+      form: {
+        email: data.email,
+        password: data.password,
+      },
+      error: data.error,
+      response: data.response,
+    },
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchRequest,
+    login,
+    updateEmail,
+    updatePassword,
   }, dispatch);
 }
 
 class loginPage extends Component {
   render() {
+    const { ui, data } = this.props;
+    const error = data.error ? data.error : null;
     return (
       <div>
-
         <h2>EASY REACT REDUX</h2>
-
-        <div>
-          {this.props.error}
-        </div>
-
+        <div>{error}</div>
+        <input type='email' onChange={this.props.updateEmail}/>
+        <input type='password' onChange={this.props.updatePassword}/>
         <button
-          disabled={this.props.loading}
-          onClick={this.props.fetchRequest}
-        >FETCH</button>
-
+          disabled={ui.loading}
+          onClick={this.props.login}
+        >
+        FETCH
+        </button>
       </div>
     );
   }

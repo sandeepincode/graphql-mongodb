@@ -1,12 +1,12 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import history from '../history';
 
-import rootReducer from './reducers/root';
+import loginReducer from './reducers/login/reducer';
 
 const reducers = combineReducers({
-  root: rootReducer,
+  login: loginReducer,
 });
 
 let devTools = f => f;

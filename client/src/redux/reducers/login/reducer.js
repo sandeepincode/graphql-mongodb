@@ -1,4 +1,27 @@
-export default function reducer(state = initialState, {type, payload}) {
+import update from 'immutability-helper';
+import {
+  FETCH_REQUEST,
+  FETCH_FAILURE,
+  FETCH_SUCCESS,
+  UPDATE_EMAIL,
+  UPDATE_PASSWORD,
+} from './actions';
+
+const initialState = {
+  ui: {
+    loading: false,
+  },
+  data: {
+    form: {
+      email: '',
+      password: '',
+    },
+    error: [],
+    response: [],
+  },
+};
+
+export default function reducer(state = initialState, { type, payload }) {
   switch (type) {
     case FETCH_REQUEST: {
       return update(state, {
@@ -27,6 +50,25 @@ export default function reducer(state = initialState, {type, payload}) {
         },
       });
     }
+    case UPDATE_EMAIL: {
+      return update(state, {
+        data: {
+          form: {
+            email: { $set: payload },
+          },
+        },
+      });
+    }
+    case UPDATE_PASSWORD: {
+      return update(state, {
+        data: {
+          form: {
+            password: { $set: payload },
+          },
+        },
+      });
+    }
+    default:
+      return state;
   }
-  return state;
 }
