@@ -1,5 +1,7 @@
 
 import simpleAction from '../../../util/simpleAction';
+import ApolloClient from 'apollo-boost';
+import gql from 'graphql-tag';
 import axios from 'axios';
 import _ from 'lodash';
 
@@ -11,6 +13,8 @@ import {
   UPDATE_PASSWORD,
 } from './actions';
 
+const uri = 'https://localhost3009/graphql';
+const client = new ApolloClient({ uri });
 
 const fetchFailure = (FETCH_FAILURE);
 
@@ -39,4 +43,28 @@ export default function login() {
       return dispatch(fetchFailure('Something went wrong'));
     }
   };
+}
+
+export function graphqlLogin() {
+  return async (dispatch, getState) => {
+    simpleAction(FETCH_REQUEST);
+    try {
+      client.query({
+        query: gql`
+          query TodoApp {
+            todos {
+              id
+              text
+              completed
+            }
+          }
+        `,
+      })
+        .then(data => return simpleAction(FETCH_SUCCESS, data));
+        .catch(error => return simpleAction(FETCH_FAILURE, error));
+
+    } catch {
+      return simpleAction(FETCH_FAILURE);
+    }
+  }
 }

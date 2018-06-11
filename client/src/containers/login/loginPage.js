@@ -39,7 +39,7 @@ class loginPage extends Component {
     const error = data.error ? data.error : null;
     return (
       <div>
-        <h2>EASY REACT REDUX</h2>
+        <h2>TEST APPLICATION</h2>
         <div>{error}</div>
         <input type='email' onChange={this.props.updateEmail}/>
         <input type='password' onChange={this.props.updatePassword}/>
