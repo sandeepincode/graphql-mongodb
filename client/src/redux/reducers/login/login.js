@@ -1,7 +1,7 @@
 
 import simpleAction from '../../../util/simpleAction';
-import ApolloClient from 'apollo-boost';
-import gql from 'graphql-tag';
+import query from './query';
+import { createApolloFetch } from 'apollo-fetch';
 import axios from 'axios';
 import _ from 'lodash';
 
@@ -13,10 +13,10 @@ import {
   UPDATE_PASSWORD,
 } from './actions';
 
-const uri = 'https://localhost3009/graphql';
-const client = new ApolloClient({ uri });
-
 const fetchFailure = (FETCH_FAILURE);
+
+const uri = 'https://localhost:3009/graphql';
+const apolloFetch = createApolloFetch({ uri });
 
 export const updatePassword = simpleAction(UPDATE_PASSWORD);
 export const updateEmail = simpleAction(UPDATE_EMAIL);
@@ -27,13 +27,17 @@ export default function login() {
     try {
       const { email, password } = getState().login.data.form;
       if (!_.isEmpty(email) || !_.isEmpty(password)) {
-        const request = axios.post('/graphql', {
-          email,
-          password,
-        });
-        if (!_.isEmpty(response)) {
-          return simpleAction(FETCH_SUCCESS, response);
-        }
+
+        const variables = { email, password };
+        apolloFetch({ query, variables })
+          .then(data => {
+            console.log(data);
+            return simpleAction(FETCH_SUCCESS, response);
+          })
+          .catch( e => {
+            console.log(e);
+            return simpleAction(FETCH_FAILURE, response);
+          });
       }
       return simpleAction(FETCH_FAILURE);
 
@@ -43,28 +47,4 @@ export default function login() {
       return dispatch(fetchFailure('Something went wrong'));
     }
   };
-}
-
-export function graphqlLogin() {
-  return async (dispatch, getState) => {
-    simpleAction(FETCH_REQUEST);
-    try {
-      client.query({
-        query: gql`
-          query TodoApp {
-            todos {
-              id
-              text
-              completed
-            }
-          }
-        `,
-      })
-        .then(data => return simpleAction(FETCH_SUCCESS, data));
-        .catch(error => return simpleAction(FETCH_FAILURE, error));
-
-    } catch {
-      return simpleAction(FETCH_FAILURE);
-    }
-  }
 }
