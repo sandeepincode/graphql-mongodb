@@ -23,26 +23,37 @@ export const updateEmail = simpleAction(UPDATE_EMAIL);
 
 export default function login() {
   return async (dispatch, getState) => {
-    simpleAction(FETCH_REQUEST);
-    try {
-      const { email, password } = getState().login.data.form;
-      if (!_.isEmpty(email) || !_.isEmpty(password)) {
+    
+    dispatch({
+      type: FETCH_REQUEST,
+    });
 
+    const { email, password } = getState().login.data.form;
+    
+    try {  
+    
+      if (!_.isEmpty(email) || !_.isEmpty(password)) {
+        
         const variables = { email, password };
+
         apolloFetch({ query, variables })
           .then(data => {
             console.log(data);
-            return simpleAction(FETCH_SUCCESS, response);
+            return dispatch({
+              type: FETCH_SUCCESS,
+              payload: data
+            });
           })
           .catch( e => {
             console.log(e);
+            return dispatch({
+              type:FETCH_FAILURE,
+              payload: e
+            })
             return simpleAction(FETCH_FAILURE, response);
           });
       }
       return simpleAction(FETCH_FAILURE);
-
-      // hit graphql endpoint with data
-
     } catch (e) {
       return dispatch(fetchFailure('Something went wrong'));
     }

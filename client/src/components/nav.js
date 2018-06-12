@@ -9,7 +9,7 @@ export defautl class nav extends Component {
 	render() {
 		return (
 			<div>
-				test method
+				Nav Component
 			</div>
 		);
 	}
