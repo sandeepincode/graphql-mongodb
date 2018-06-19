@@ -1,9 +1,8 @@
-
-import simpleAction from '../../../util/simpleAction';
-import query from './query';
-import { createApolloFetch } from 'apollo-fetch';
 import axios from 'axios';
 import _ from 'lodash';
+import { createApolloFetch } from 'apollo-fetch';
+import simpleAction from '../../../util/simpleAction';
+import query from './query';
 
 import {
   FETCH_REQUEST,
@@ -13,49 +12,40 @@ import {
   UPDATE_PASSWORD,
 } from './actions';
 
-const fetchFailure = (FETCH_FAILURE);
-
 const uri = 'https://localhost:3009/graphql';
 const apolloFetch = createApolloFetch({ uri });
 
 export const updatePassword = simpleAction(UPDATE_PASSWORD);
 export const updateEmail = simpleAction(UPDATE_EMAIL);
 
-export default function login() {
+export function login() {
   return async (dispatch, getState) => {
-    
     dispatch({
       type: FETCH_REQUEST,
     });
-
     const { email, password } = getState().login.data.form;
-    
-    try {  
-    
+    try {
       if (!_.isEmpty(email) || !_.isEmpty(password)) {
-        
         const variables = { email, password };
-
         apolloFetch({ query, variables })
-          .then(data => {
-            console.log(data);
+          .then((data) => {
             return dispatch({
               type: FETCH_SUCCESS,
-              payload: data
+              payload: data,
             });
           })
-          .catch( e => {
-            console.log(e);
+          .catch((e) => {
             return dispatch({
-              type:FETCH_FAILURE,
-              payload: e
-            })
-            return simpleAction(FETCH_FAILURE, response);
+              type: FETCH_FAILURE,
+              payload: e,
+            });
           });
       }
-      return simpleAction(FETCH_FAILURE);
     } catch (e) {
-      return dispatch(fetchFailure('Something went wrong'));
+      return dispatch({
+        type: FETCH_FAILURE,
+        payload: e,
+      })
     }
   };
 }
