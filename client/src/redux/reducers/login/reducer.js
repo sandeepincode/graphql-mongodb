@@ -5,6 +5,7 @@ import {
   FETCH_SUCCESS,
   UPDATE_EMAIL,
   UPDATE_PASSWORD,
+  UPDATE_VALUE,
 } from './actions';
 
 const initialState = {
@@ -64,6 +65,15 @@ export default function reducer(state = initialState, { type, payload }) {
         data: {
           form: {
             password: { $set: payload },
+          },
+        },
+      });
+    }
+    case UPDATE_VALUE: {
+      return update(state, {
+        data: {
+          form: {
+            [payload.type]: { $set: payload.value },
           },
         },
       });

@@ -10,6 +10,7 @@ import {
   FETCH_SUCCESS,
   UPDATE_EMAIL,
   UPDATE_PASSWORD,
+  UPDATE_VALUE,
 } from './actions';
 
 const uri = 'https://localhost:3009/graphql';
@@ -17,6 +18,8 @@ const apolloFetch = createApolloFetch({ uri });
 
 export const updatePassword = simpleAction(UPDATE_PASSWORD);
 export const updateEmail = simpleAction(UPDATE_EMAIL);
+
+export const updateValue = simpleAction(UPDATE_VALUE);
 
 export function login() {
   return async (dispatch, getState) => {

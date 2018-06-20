@@ -6,6 +6,7 @@ import {
   login,
   updateEmail,
   updatePassword,
+  updateValue,
 } from '../../redux/reducers/login/login';
 
 function mapStateToProps({ login }) {
@@ -30,19 +31,39 @@ function mapDispatchToProps(dispatch) {
     login,
     updateEmail,
     updatePassword,
+    updateValue,
   }, dispatch);
 }
 
 class loginPage extends Component {
+
+  updateEmail = (event, value) => {
+    this.props.updateEmail(event.target.value);
+  }
+
+  updatePassword = (event, value) => {
+    this.props.updatePassword(event.target.value);
+  }
+
+  updateValue = (event, type) => {
+    console.log(type, event.target.value);
+    const payload = {
+      type,
+      value: event.target.value,
+    };
+    this.props.updateValue(payload);
+  }
+
   render() {
     const { ui, data } = this.props;
     const error = data.error ? data.error : null;
+
     return (
       <div>
         <h2>TEST APPLICATION</h2>
         <div>{error}</div>
-        <input type='email' onChange={this.props.updateEmail}/>
-        <input type='password' onChange={this.props.updatePassword}/>
+        <input type='email' onChange={(e) => { this.updateValue(e, 'email'); }}/>
+        <input type='password' onChange={(e) => { this.updateValue(e, 'password'); }}/>
         <button
           disabled={ui.loading}
           onClick={this.props.login}

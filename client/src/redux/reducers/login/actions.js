@@ -5,3 +5,5 @@ export const FETCH_SUCCESS = 'fetchSuccess/login/';
 
 export const UPDATE_EMAIL = 'updateEmail/login/';
 export const UPDATE_PASSWORD = 'updatePassword/login/';
+
+export const UPDATE_VALUE = 'updateValue/login/';
