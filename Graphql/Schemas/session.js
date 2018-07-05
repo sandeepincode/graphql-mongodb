@@ -4,6 +4,7 @@ type Session {
   user_id: String!
   userAgent: String!
   ip: String!
+  active: String!
   created: String!
 }
  type Query {

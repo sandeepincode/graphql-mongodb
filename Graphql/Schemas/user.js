@@ -12,7 +12,7 @@ type Query {
   login(
     email: String!,
     password: String!
-  ): [String!]!
+  ): User!
 }
 type Mutation {
   createUser(

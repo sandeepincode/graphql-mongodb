@@ -16,6 +16,10 @@ const sessionSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  active: {
+    type: String,
+    trim: true,
+  },
   created: {
     type: Date,
     default: Date.now,

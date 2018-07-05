@@ -3,8 +3,6 @@ import {
   FETCH_REQUEST,
   FETCH_FAILURE,
   FETCH_SUCCESS,
-  UPDATE_EMAIL,
-  UPDATE_PASSWORD,
   UPDATE_VALUE,
 } from './actions';
 
@@ -17,7 +15,7 @@ const initialState = {
       email: '',
       password: '',
     },
-    error: [],
+    error: '',
     response: [],
   },
 };
@@ -51,29 +49,11 @@ export default function reducer(state = initialState, { type, payload }) {
         },
       });
     }
-    case UPDATE_EMAIL: {
-      return update(state, {
-        data: {
-          form: {
-            email: { $set: payload },
-          },
-        },
-      });
-    }
-    case UPDATE_PASSWORD: {
-      return update(state, {
-        data: {
-          form: {
-            password: { $set: payload },
-          },
-        },
-      });
-    }
     case UPDATE_VALUE: {
       return update(state, {
         data: {
           form: {
-            [payload.type]: { $set: payload.value },
+            [ payload.type ]: { $set: payload.value },
           },
         },
       });

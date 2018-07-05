@@ -1,12 +1,5 @@
 export default {
   Query: {
-    allUsers: async (parent, args, { User }) => {
-      const users = await User.find();
-      return users.map((x) => {
-        x._id = x._id.toString();
-        return x;
-      });
-    },
     findUser: async (parent, args, { User }) => {
       const users = await User.find(args);
       if (!users) {
@@ -17,33 +10,33 @@ export default {
         return x;
       });
     },
-    login: async (parent, args, { User, Session }) => {
+    login: async (parent, args, { User, Session, UserAgent, IpAddress }) => {
+
       const user = await User.find(args);
-      if (!user) {
-        return 'No User Found';
-      }
       const session = await new Session({
         user_id: user._id,
-        ip: '127.0.0.1',
-        userAgent: 'your Maa',
+        ip: IpAddress,
+        userAgent: UserAgent,
       }).save();
+
       return user._id;
     },
   },
   Mutation: {
-    createUser: async (parent, args, { User, Session }, after, x) => {
-      console.log(parent);
-      console.log(args);
-      console.log(after);
-      console.log(x)
+    createUser: async (parent, args, { User, Session, UserAgent, IpAddress }) => {
+
+      console.log(UserAgent);
 
       const user = await new User(args).save();
       user._id = user._id.toString();
+      
       const session = await new Session({
         user_id: user._id,
-        userAgent: 'Your Daa',
-        ip: 'localhost',
+        userAgent: UserAgent,
+        ip: IpAddress,
+        active: new Date()
       }).save();
+      
       return user;
     },
     deleteUser: async (parent, args, { User, Session }) => {
