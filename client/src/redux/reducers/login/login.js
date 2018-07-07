@@ -1,4 +1,3 @@
-import axios from 'axios';
 import _ from 'lodash';
 import { createApolloFetch } from 'apollo-fetch';
 import simpleAction from '../../../util/simpleAction';
@@ -18,7 +17,6 @@ export const updateValue = simpleAction(UPDATE_VALUE);
 
 export function login() {
   return async (dispatch, getState) => {
-    console.log('inside function')
     dispatch({
       type: FETCH_REQUEST,
     });
@@ -33,18 +31,20 @@ export function login() {
               payload: data,
             });
           })
-          .catch((e) => {
-            return dispatch({
-              type: FETCH_FAILURE,
-              payload: e,
-            });
-          });
+          .catch(e => dispatch({
+            type: FETCH_FAILURE,
+            payload: e,
+          }));
       }
     } catch (e) {
       return dispatch({
         type: FETCH_FAILURE,
         payload: e,
-      })
+      });
     }
+    return dispatch({
+      type: FETCH_FAILURE,
+      payload: 'FAILED TRY CATCH',
+    });
   };
 }
