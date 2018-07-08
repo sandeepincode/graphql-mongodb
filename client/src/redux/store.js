@@ -4,9 +4,11 @@ import thunk from 'redux-thunk';
 import history from '../history';
 
 import loginReducer from './reducers/login/reducer';
+import registerReducer from './reducers/register/reducer';
 
 const reducers = combineReducers({
   login: loginReducer,
+  register: registerReducer,
 });
 
 let devTools = f => f;

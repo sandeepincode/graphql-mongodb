@@ -7,8 +7,8 @@ import {
   updateValue,
 } from '../../redux/reducers/register/register';
 
-function mapStateToProps({ login }) {
-  const { ui, data } = login;
+function mapStateToProps({ register }) {
+  const { ui, data } = register;
   return {
     ui: {
       loading: ui.loading,
@@ -70,4 +70,4 @@ class registerPage extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(loginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(registerPage);
