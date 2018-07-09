@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { form } from  '../../components/login';
 
 import {
   login,
@@ -43,22 +44,19 @@ class loginPage extends Component {
   };
 
   render() {
-    
+
     const { ui, data } = this.props;
     const error = data.error ? data.error : null;
 
     return (
       <div>
+
         <h2>TEST APPLICATION</h2>
+
         <div>{ error }</div>
-        <input type='email' onChange={ (e) => { this.updateValue(e, 'email'); } }/>
-        <input type='password' onChange={ (e) => { this.updateValue(e, 'password'); } }/>
-        <button
-          disabled={ ui.loading }
-          onClick={ this.props.login }
-        >
-        FETCH
-        </button>
+
+        <form { ...this.props }/>
+
       </div>
     );
   }

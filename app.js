@@ -21,12 +21,10 @@ const helperMiddleware = [
   bodyParser.json(),
   bodyParser.text({ type: 'application/graphql' }),
   (req, res, next) => {
-    
     // if ( res.headers['xx-gql-key'] !== AUTH_KEY ){
     //   const error = new error('Not Autharised');
     //   return res.send();
     // }
-    
     next();
   },
 ];
@@ -35,7 +33,6 @@ const PORT = 3009;
 const app = express();
 
 app.use('/graphql', ...helperMiddleware, graphqlExpress(req => {
-  
   const UserAgent = req.headers['user-agent'];
   const IpAddress = req.connection.remoteAddress;
 
@@ -55,7 +52,7 @@ app.use('/graphql', ...helperMiddleware, graphqlExpress(req => {
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.listen(PORT);
- 
+
 console.log(`Running On Port ${PORT}`);
 
 // app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { User, Session } }));
