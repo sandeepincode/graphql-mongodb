@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { form } from '../../components/register';
 import {
   register,
   updateValue,
@@ -52,19 +52,9 @@ class registerPage extends Component {
 
     return (
       <div>
-        <h2>TEST APPLICATION</h2>
+        <h2> Register Page Component</h2>
         <div>{ error }</div>
-        <input type='email' placeholder='Email' onChange={ (e) => { this.updateValue(e, 'email'); } }/>
-        <input type='text' placeholder='First Name' onChange={ (e) => { this.updateValue(e, 'firstName'); } }/>
-        <input type='text' placeholder='Second Name' onChange={ (e) => { this.updateValue(e, 'secondName'); } }/>
-        <input type='password' placeholder='Password' onChange={ (e) => { this.updateValue(e, 'password'); } }/>
-        <input type='password' placeholder='Password Confirm' onChange={ (e) => { this.updateValue(e, 'passwordConf'); } }/>
-        <button
-          disabled={ ui.loading }
-          onClick={ this.props.register }
-        >
-        FETCH
-        </button>
+        <form { ...this.props } />
       </div>
     );
   }
