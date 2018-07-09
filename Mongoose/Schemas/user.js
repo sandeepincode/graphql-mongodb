@@ -1,5 +1,6 @@
 
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -35,6 +36,19 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+});
+
+UserSchema.pre('save', (next) => {
+  let user = this;
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(user.password, salt, (err, hash) => {
+      if (err) {
+        return next(err);
+      }
+      user.password = hash;
+      return next();
+    });
+  });
 });
 
 export const User = mongoose.model('User', UserSchema);

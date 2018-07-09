@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 export default {
   Query: {
     findUser: async (parent, args, { User }) => {
@@ -11,15 +12,19 @@ export default {
       });
     },
     login: async (parent, args, { User, Session, UserAgent, IpAddress }) => {
-
-      const user = await User.find(args);
-      const session = await new Session({
-        user_id: user._id,
-        ip: IpAddress,
-        userAgent: UserAgent,
-      }).save();
-
-      return user._id;
+      // get user by email then com{pare password
+      const user = await User.find({
+        email: args.emailAddress
+      });
+      if (bcrypt.compareSync( args.password, user.password) ) {
+        const session = await new Session({
+          user_id: user._id,
+          ip: IpAddress,
+          userAgent: UserAgent,
+        }).save();
+        return user._id
+      }
+      return false;
     },
   },
   Mutation: {
@@ -28,15 +33,15 @@ export default {
       console.log(UserAgent);
 
       const user = await new User(args).save();
-      user._id = user._id.toString();
       
+      user._id = user._id.toString();
       const session = await new Session({
         user_id: user._id,
         userAgent: UserAgent,
         ip: IpAddress,
         active: new Date()
       }).save();
-      
+
       return user;
     },
     deleteUser: async (parent, args, { User, Session }) => {
