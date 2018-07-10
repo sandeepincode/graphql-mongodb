@@ -32,22 +32,19 @@ const helperMiddleware = [
 const PORT = 3009;
 const app = express();
 
-app.use('/graphql', ...helperMiddleware, graphqlExpress(req => {
+app.use('/graphql', ...helperMiddleware, graphqlExpress((req) => {
   const UserAgent = req.headers['user-agent'];
   const IpAddress = req.connection.remoteAddress;
-
-  console.log( req.connection.remoteAddress );
-    return {
-      schema,
-      context: {
-        User,
-        Session,
-        UserAgent,
-        IpAddress,
-      },
-    };
-  })
-);
+  return {
+    schema,
+    context: {
+      User,
+      Session,
+      UserAgent,
+      IpAddress,
+    },
+  };
+}));
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
