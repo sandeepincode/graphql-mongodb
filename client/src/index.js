@@ -11,8 +11,11 @@ import {
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import history from './history';
-import loginPage from './containers/login/loginPage';
-import registerPage from './containers/register/registerPage';
+
+import App from './containers/basePage';
+import Login from './containers/login/loginPage';
+import Register from './containers/register/registerPage';
+import NotFound from './containers/errorPage';
 
 // Redux
 import store from './redux/store';
@@ -30,15 +33,16 @@ const theme = createMuiTheme({
       dark: green[700],
     },
   },
-})
+});
 
 /* eslint-disable */
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history} basename="/">
+    <ConnectedRouter history={history} basename="/" component={App}>
       <Switch>
-        <Route exact path="/login" component={loginPage} />
-        <Route exact path="/register" component={registerPage} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </ConnectedRouter>
   </Provider>
