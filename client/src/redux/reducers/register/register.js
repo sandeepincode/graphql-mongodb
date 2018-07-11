@@ -20,17 +20,22 @@ export function register() {
     dispatch({
       type: FETCH_REQUEST,
     });
-    const { email, password } = getState().login.data.form;
+    const { email, firstName, secondName, password, passwordConf } = getState().register.data.form;
     try {
       if (!_.isEmpty(email) || !_.isEmpty(password)) {
-        const variables = { email, firstName, secondName, password, passwordConf };
+
         if ( password !== passwordConf ) {
           return dispatch({
             type: FETCH_FAILURE,
             payload: 'Passwords Do Not Match',
           });
         }
-        apolloFetch({ query, variables })
+
+        const requestData = {
+          email, firstName, secondName, password, passwordConf,
+        }
+
+        apolloFetch({ query, requestData })
           .then((data) => {
             return dispatch({
               type: FETCH_SUCCESS,

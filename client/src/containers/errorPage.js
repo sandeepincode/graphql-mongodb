@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
-export default errorPage extends Component {
+export default class errorPage extends Component {
   render() {
     return (
       <div>Error 404 Page</div>

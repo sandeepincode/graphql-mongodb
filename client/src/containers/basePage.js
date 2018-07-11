@@ -1,6 +1,7 @@
-import { component } from 'react';
+import React, { Component } from 'react';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
-export default basePage extends component {
+export default class basePage extends Component {
   render() {
     return (
       < MuiThemeProvider >

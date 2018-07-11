@@ -1,7 +1,7 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
 
-export defautl class nav extends Component {
-	
+export default class nav extends Component {
+
 	constructor(props){
 		super(props);
 	}
