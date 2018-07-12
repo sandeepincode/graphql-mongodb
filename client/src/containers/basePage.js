@@ -5,6 +5,7 @@ export default class basePage extends Component {
   render() {
     return (
       < MuiThemeProvider >
+        <div> THIS IS THE BASE PAGE PART</div>
         {this.props.children}
       </MuiThemeProvider >
     );

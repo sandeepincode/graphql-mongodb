@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { createApolloFetch } from 'apollo-fetch';
-import simpleAction from '../../../util/simpleAction';
+import simpleAction from '../../util/simpleAction';
 import query from './query';
 
 import {

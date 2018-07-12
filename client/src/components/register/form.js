@@ -14,7 +14,7 @@ export default class nav extends Component {
         <input type='password' placeholder='Password' onChange={ (e) => { this.updateValue(e, 'password'); } }/>
         <input type='password' placeholder='Password Confirm' onChange={ (e) => { this.updateValue(e, 'passwordConf'); } }/>
         <button
-          disabled={ ui.loading }
+          disabled={ this.props.ui.loading }
           onClick={ this.props.register }
         >FETCH</button>
 			</div>

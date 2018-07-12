@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { form } from  '../../components/login';
+import form from  '../../components/login/form';
 
 import {
   login,
@@ -45,18 +45,16 @@ class loginPage extends Component {
 
   render() {
 
+    console.log('about to render');
+
     const { ui, data } = this.props;
     const error = data.error ? data.error : null;
 
     return (
       <div>
-
         <h2>TEST APPLICATION</h2>
-
         <div>{ error }</div>
-
         <form { ...this.props }/>
-
       </div>
     );
   }

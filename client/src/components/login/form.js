@@ -11,15 +11,12 @@ export default class nav extends Component {
 
 		return (
 			<div>
-
       <div>
         <input type='email' onChange={ (e) => { this.updateValue(e, 'email'); } }/>
       </div>
-
       <div>
         <input type='password' onChange={ (e) => { this.updateValue(e, 'password'); } }/>
       </div>
-
       <div>
         <button
           disabled={ ui.loading }
