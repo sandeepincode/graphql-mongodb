@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import form from '../../components/register/form';
+import Form from '../../components/register/form';
 import {
   register,
   updateValue,
@@ -37,7 +37,6 @@ function mapDispatchToProps(dispatch) {
 class registerPage extends Component {
 
   updateValue = (event, type) => {
-    console.log(type, event.target.value);
     const payload = {
       type,
       value: event.target.value,
@@ -54,7 +53,11 @@ class registerPage extends Component {
       <div>
         <h2> Register Page Component</h2>
         <div>{ error }</div>
-        <form { ...this.props } />
+        <Form
+          onChange={ this.updateValue }
+          disabled={ this.props.ui.disabled }
+          register={ this.props.register }
+        />
       </div>
     );
   }

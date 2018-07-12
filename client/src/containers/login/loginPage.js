@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import form from  '../../components/login/form';
+import Form from  '../../components/login/form';
 
 import {
   login,
@@ -35,7 +35,6 @@ function mapDispatchToProps(dispatch) {
 class loginPage extends Component {
 
   updateValue = (event, type) => {
-    console.log(type, event.target.value);
     const payload = {
       type,
       value: event.target.value,
@@ -45,19 +44,20 @@ class loginPage extends Component {
 
   render() {
 
-    console.log('about to render');
-
     const { ui, data } = this.props;
     const error = data.error ? data.error : null;
 
     return (
       <div>
-        <h2>TEST APPLICATION</h2>
+        <h2>Register Page</h2>
         <div>{ error }</div>
-        <form { ...this.props }/>
+        <Form
+          onChange={this.updateValue}
+          login={this.props.login}
+          disabled={this.props.ui.loading}
+        />
       </div>
     );
   }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(loginPage);

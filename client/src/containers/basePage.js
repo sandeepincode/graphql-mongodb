@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 export default class basePage extends Component {
   render() {
-    return (
-      < MuiThemeProvider >
-        <div> THIS IS THE BASE PAGE PART</div>
-        {this.props.children}
-      </MuiThemeProvider >
+  const theme = createMuiTheme({
+    palette: {
+      type: 'dark',
+    },
+  });
+  return (
+    <MuiThemeProvider theme={theme}>
+      <div>EXAMPLE NAV</div>
+      { this.props.children }
+    </MuiThemeProvider>
     );
   }
 }
