@@ -5,10 +5,12 @@ import history from '../history';
 
 import loginReducer from './reducers/login/reducer';
 import registerReducer from './reducers/register/reducer';
+import navReducer from './reducers/nav/reducer';
 
 const reducers = combineReducers({
   login: loginReducer,
   register: registerReducer,
+  nav: navReducer,
 });
 
 let devTools = f => f;

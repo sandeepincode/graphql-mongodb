@@ -5,6 +5,7 @@ import {
   FETCH_SUCCESS,
   UPDATE_VALUE,
 } from './actions';
+import simpleAction from '../../util/simpleAction';
 
 const initialState = {
   ui: {
@@ -22,6 +23,8 @@ const initialState = {
     response: [],
   },
 };
+
+export const updateValue = simpleAction(UPDATE_VALUE);
 
 export default function reducer(state = initialState, { type, payload }) {
   switch (type) {
