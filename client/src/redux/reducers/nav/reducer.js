@@ -12,11 +12,13 @@ const initialState = {
     open: false,
   },
   data: {
-    page: 'home',
+    page: 'Home',
   },
 };
 
 export const redirectNav = simpleAction(REDIRECT_NAV);
+export const openNav = simpleAction(OPEN_NAV);
+export const closeNav = simpleAction(CLOSE_NAV);
 
 export default function reducer(state = initialState, { type, payload }) {
   switch (type) {
