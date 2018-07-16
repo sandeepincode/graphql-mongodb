@@ -19,13 +19,14 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: '100%',
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -143,7 +144,7 @@ class nav extends Component {
           classes={{
             paper: classNames(classes.drawerPaper, !this.props.ui.open && classes.drawerPaperClose),
           }}
-          open={this.props.ui.openNav}
+          open={this.props.ui.open}
         >
           <div className={classes.toolbar}>
             <IconButton onClick={this.props.closeNav}>
@@ -151,9 +152,9 @@ class nav extends Component {
             </IconButton>
           </div>
           <Divider />
-          <List>OTHER SHITE HERE</List>
+          <List>{mailFolderListItems}</List>
           <Divider />
-          <List>SHITE HERE</List>
+          <List>{otherMailFolderListItems}</List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />

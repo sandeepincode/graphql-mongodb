@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 import {
