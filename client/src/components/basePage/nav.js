@@ -19,7 +19,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
 
@@ -152,9 +151,9 @@ class nav extends Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{mailFolderListItems}</List>
+          <List>OTHER SHITE HERE</List>
           <Divider />
-          <List>{otherMailFolderListItems}</List>
+          <List>SHITE HERE</List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
@@ -165,7 +164,7 @@ class nav extends Component {
   }
 }
 
-MiniDrawer.propTypes = {
+nav.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };

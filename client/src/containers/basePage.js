@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Nav from '../components/basePage/nav';
+/* eslint-disable */
 export default class basePage extends Component {
   render() {
-  const theme = createMuiTheme({
-    palette: {
-      type: 'dark',
-    },
-  });
-  return (
-    <MuiThemeProvider theme={theme}>
-      <div>EXAMPLE NAV</div>
-      { this.props.children }
-    </MuiThemeProvider>
+    const theme = createMuiTheme({
+      palette: {
+        type: 'light',
+      },
+    });
+    return (
+      <MuiThemeProvider theme={theme}>
+        <Nav />
+        { this.props.children }
+      </MuiThemeProvider>
     );
   }
 }
