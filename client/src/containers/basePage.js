@@ -11,8 +11,9 @@ export default class basePage extends Component {
     });
     return (
       <MuiThemeProvider theme={theme}>
-        <Nav />
+        <Nav>
         { this.props.children }
+        </Nav>
       </MuiThemeProvider>
     );
   }

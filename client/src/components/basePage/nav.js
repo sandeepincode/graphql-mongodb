@@ -158,7 +158,7 @@ class nav extends Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
+          <Typography noWrap>{ this.props.children }</Typography>
         </main>
       </div>
     );
