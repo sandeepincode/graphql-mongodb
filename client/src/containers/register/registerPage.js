@@ -51,7 +51,6 @@ class registerPage extends Component {
 
     return (
       <div>
-        <h2> Register Page Component</h2>
         <div>{ error }</div>
         <Form
           onChange={ this.updateValue }

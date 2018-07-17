@@ -7,78 +7,96 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import TextField from '@material-ui/core/TextField';
+import History from '../../history.js'
 
 const styles = {
   card: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    width: '40%',
+		margin: '0 auto',
   },
   title: {
+		width: 200,
+		margin: '0 auto',
     marginBottom: 16,
     fontSize: 14,
   },
+	textField: {
+		margin: '0 auto',
+		width: 200,
+	},
 	form: {
 		margin: 40,
 	},
-  pos: {
-    marginBottom: 12,
-  },
+	button: {
+		margin: '0 5px',
+	},
+	buttons: {
+		margin: '20px auto 0 auto',
+	}
 };
 
 class form extends Component {
 	render() {
 
 		const { classes } = this.props;
-		const bull = <span className={classes.bullet}>•</span>;
+		const bull = <span className={ classes.bullet }>•</span>;
 
 		return (
 			<div>
-				<Card className={classes.card}>
+				<Card className={ classes.card }>
 					<CardContent>
-						<Typography className={classes.title} color="textSecondary">
-							Welcome!
-						</Typography>
-						<Typography variant="headline" component="h2">
-							Login
-						</Typography>
-						<FormControl className={classes.form}>
-							<InputLabel htmlFor="input-with-icon-adornment">With a start adornment</InputLabel>
-							<Input
-								id="input-with-icon-adornment"
-								startAdornment={
-									<InputAdornment position="start">
-										<AccountCircle />
-									</InputAdornment>
-								}
+						<FormControl className={ classes.form }>
+						<div className={ classes.title }>
+							<Typography variant="headline" component="h1">
+								Login
+							</Typography>
+						</div>
+						<div>
+							<TextField
+								id="email-input"
+								label="Email"
+								className={ classes.textField }
+								type="email"
+								onChange={ (e) => { this.props.onChange(e, 'email'); } }
+								autoComplete="current-password"
+								margin="normal"
 							/>
-							<Input />
+						</div>
+						<div>
+							<TextField
+								id="password-input"
+								label="Password"
+								className={ classes.textField }
+								type="password"
+								onChange={ (e) => { this.props.onChange(e, 'password'); } }
+								autoComplete="current-password"
+								margin="normal"
+							/>
+						</div>
+						<div className={ classes.buttons }>
+							<Button
+								variant="contained"
+								color="primary"
+								disabled={ this.props.disabled }
+								onClick={ this.props.login }
+								className={ classes.button }>
+									Login
+							</Button>
+							<Button
+								variant="outlined"
+								color="primary"
+								href="/register"
+								disabled={ this.props.disabled }
+								onClick={ ()=> History.push("/register") }
+								className={ classes.button }>
+									Register
+							</Button>
+						</div>
 						</FormControl>
 					</CardContent>
-					<CardActions>
-						<Button
-							size="primary"
-							disabled={ this.props.disabled }
-							onClick={ this.props.login }
-							>Login</Button>
-					</CardActions>
 				</Card>
-
-        <div>
-          <input type='email' onChange={ (e) => { this.props.onChange(e, 'email'); } }/>
-        </div>
-        <div>
-          <input type='password' onChange={ (e) => { this.props.onChange(e, 'password'); } }/>
-        </div>
-
 			</div>
 		);
 	}

@@ -49,7 +49,6 @@ class loginPage extends Component {
 
     return (
       <div>
-        <h2>Register Page</h2>
         <div>{ error }</div>
         <Form
           onChange={this.updateValue}
