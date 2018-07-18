@@ -13,9 +13,13 @@ import History from '../../history.js'
 
 const styles = {
   card: {
-    width: '40%',
+    width: '35%',
 		margin: '0 auto',
   },
+	cardContent: {
+		margin: '0 auto',
+		textAlign: 'center',
+	},
   title: {
 		width: 200,
 		margin: '0 auto',
@@ -27,7 +31,9 @@ const styles = {
 		width: 200,
 	},
 	form: {
-		margin: 40,
+		padding: 40,
+		textAlign: 'center',
+		width: '60%',
 	},
 	button: {
 		margin: '0 5px',
@@ -46,7 +52,7 @@ class form extends Component {
 		return (
 			<div>
 				<Card className={ classes.card }>
-					<CardContent>
+					<CardContent className={ classes.cardContent }>
 						<FormControl className={ classes.form }>
 						<div className={ classes.title }>
 							<Typography variant="headline" component="h1">
