@@ -13,7 +13,7 @@ import History from '../../history.js'
 
 const styles = {
   card: {
-    width: '35%',
+    width: '50%',
 		margin: '0 auto',
   },
 	cardContent: {
@@ -44,8 +44,8 @@ const styles = {
 };
 
 class form extends Component {
-	render() {
 
+	render() {
 		const { classes } = this.props;
 		const bull = <span className={ classes.bullet }>•</span>;
 

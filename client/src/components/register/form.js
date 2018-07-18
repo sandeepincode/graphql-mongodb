@@ -108,7 +108,7 @@ class form extends Component {
 						<div>
 							<TextField
 								id="password-conf-input"
-								label="PasswordConf"
+								label="Confirm Password"
 								className={ classes.textField }
 								type="password"
 								onChange={ (e) => { this.props.onChange(e, 'passwordConf'); } }
