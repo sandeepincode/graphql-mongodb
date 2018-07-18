@@ -135,7 +135,7 @@ class nav extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              Mini variant drawer
+               ( o _ 0 )
             </Typography>
           </Toolbar>
         </AppBar>

@@ -16,6 +16,9 @@ const styles = {
     width: '40%',
 		margin: '0 auto',
   },
+	cardContent: {
+		margin: '0 auto'
+	},
   title: {
 		width: 200,
 		margin: '0 auto',
@@ -24,10 +27,10 @@ const styles = {
   },
 	textField: {
 		margin: '0 auto',
-		width: 200,
+		width: '100%',
 	},
 	form: {
-		margin: 40,
+		padding: 40,
 	},
 	button: {
 		margin: '0 5px',
@@ -46,7 +49,7 @@ class form extends Component {
 		return (
 			<div>
 				<Card className={ classes.card }>
-					<CardContent>
+					<CardContent className= { classes.cardContent }>
 						<FormControl className={ classes.form }>
 						<div className={ classes.title }>
 							<Typography variant="headline" component="h1">
