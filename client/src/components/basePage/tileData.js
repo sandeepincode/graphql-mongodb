@@ -12,6 +12,9 @@ import MailIcon from '@material-ui/icons/Mail';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReportIcon from '@material-ui/icons/Report';
 
+import AuthIcon from '@material-ui/icons/AccountCircle';
+import SettingsIcon from '@material-ui/icons/Settings';
+
 export const mailFolderListItems = (
   <div>
     <ListItem button>
@@ -60,6 +63,23 @@ export const otherMailFolderListItems = (
         <ReportIcon />
       </ListItemIcon>
       <ListItemText primary="Spam" />
+    </ListItem>
+  </div>
+);
+
+export const noAuthListItems = (
+  <div>
+    <ListItem button>
+      <ListItemIcon>
+        <AuthIcon />
+      </ListItemIcon>
+      <ListItemText primary="Login / Register" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <SettingsIcon />
+      </ListItemIcon>
+      <ListItemText primary="Settings" />
     </ListItem>
   </div>
 );

@@ -1,6 +1,5 @@
 import { createApolloFetch } from 'apollo-fetch';
 import query from './query';
-
 import {
   FETCH_REQUEST,
   FETCH_FAILURE,
@@ -10,7 +9,7 @@ import {
 const uri = 'https://localhost:3009/graphql';
 const apolloFetch = createApolloFetch({ uri });
 
-export default function authenticate() {
+export function authenticate() {
   return async (dispatch) => {
     dispatch({
       type: FETCH_REQUEST,

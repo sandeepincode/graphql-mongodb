@@ -13,7 +13,7 @@ import History from '../../history.js'
 
 const styles = {
   card: {
-    width: '50%',
+    width: '35%',
 		margin: '0 auto',
   },
 	cardContent: {

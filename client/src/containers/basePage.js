@@ -1,8 +1,11 @@
 /* eslint-disable */
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Nav from '../components/basePage/nav';
 import { authenticate } from '../redux/reducers/basePage/authenticate';
+import History from '../history';
 
 function mapStateToProps({ base }) {
   const { ui, data } = base;
@@ -24,7 +27,12 @@ function mapDispatchToProps( dispatch ) {
 class basePage extends Component {
 
   componentWillMount() {
-    this.props.authenticate();
+    console.log( 'Mounted' );
+    // this.props.authenticate();
+    if ( !this.props.data.auth ) {
+      console.log( History );
+      History.push( '/login' );
+    }
   }
 
   render() {
