@@ -3,7 +3,6 @@ import {
   FETCH_REQUEST,
   FETCH_FAILURE,
   FETCH_SUCCESS,
-  UPDATE_VALUE,
 } from './actions';
 
 const initialState = {
@@ -12,6 +11,7 @@ const initialState = {
   },
   data: {
     auth: false,
+    sessionId: '',
     error: '',
   },
 };

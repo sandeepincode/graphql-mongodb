@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 import {
   BrowserRouter as Router,
   Route,
@@ -10,9 +7,12 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import './index.css';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
 import history from './history';
 
-import App from './containers/basePage';
+import BasePage from './containers/basePage';
 import loginPage from './containers/login/loginPage';
 import registerPage from './containers/register/registerPage';
 import NotFound from './containers/errorPage';
@@ -25,10 +25,10 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history} >
       <Switch>
-        <App>
+        <BasePage>
           <Route exact path="/login" component={loginPage} />
           <Route exact path="/register" component={registerPage} />
-        </App>
+        </BasePage>
       </Switch>
     </ConnectedRouter>
   </Provider>

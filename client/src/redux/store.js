@@ -3,11 +3,13 @@ import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import history from '../history';
 
+import basePageReducer from './reducers/basePage/reducer';
 import loginReducer from './reducers/login/reducer';
 import registerReducer from './reducers/register/reducer';
 import navReducer from './reducers/nav/reducer';
 
 const reducers = combineReducers({
+  base: basePageReducer,
   login: loginReducer,
   register: registerReducer,
   nav: navReducer,
