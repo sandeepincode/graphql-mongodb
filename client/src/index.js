@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -23,14 +23,12 @@ import store from './redux/store';
 /* eslint-disable */
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history} >
-      <Switch>
-        <BasePage>
-          <Route exact path="/login" component={loginPage} />
-          <Route exact path="/register" component={registerPage} />
-        </BasePage>
-      </Switch>
-    </ConnectedRouter>
+    <Router history={history}>
+      <BasePage exact path="/">
+        <Route exact path="/login" component={loginPage} />
+        <Route path="/register" component={registerPage} />
+      </BasePage>
+    </Router>
   </Provider>
   , document.getElementById('root'));
 

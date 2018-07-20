@@ -29,14 +29,13 @@ class basePage extends Component {
   componentWillMount() {
     console.log( 'Mounted' );
     // this.props.authenticate();
-    if ( !this.props.data.auth ) {
+    if ( !this.props.data.auth || History.location !== '/register') {
       console.log( History );
       History.push( '/login' );
     }
   }
 
   render() {
-
     const theme = createMuiTheme({
       palette: {
         type: 'light',
