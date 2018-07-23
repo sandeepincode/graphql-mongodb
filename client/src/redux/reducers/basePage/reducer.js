@@ -35,7 +35,7 @@ export default function reducer(state = initialState, { type, payload }) {
         },
         data: {
           auth: { $set: false },
-          error: { $push: payload },
+          error: { $set: payload },
         },
       });
     }

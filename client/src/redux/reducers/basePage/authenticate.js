@@ -14,6 +14,12 @@ export function authenticate() {
     dispatch({
       type: FETCH_REQUEST,
     });
+    /* For Testings */
+    return dispatch({
+      type: FETCH_FAILURE,
+      payload: 'WOOPS',
+    });
+    /** ************* */
     try {
       apolloFetch({ query })
         .then((data) => {
