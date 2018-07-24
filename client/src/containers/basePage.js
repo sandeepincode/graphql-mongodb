@@ -27,21 +27,10 @@ function mapDispatchToProps( dispatch ) {
 class basePage extends Component {
 
   componentWillMount() {
-    console.log( History.location.pathname );
     this.props.authenticate();
-    // we need to mod the state to get it to update
-    console.log ({
-      auth: this.props.data.auth,
-      loc: History.location.pathname,
-      array: [ "/login", "/register" ].includes( History.location.pathname ),
-    })
-
     if ( !this.props.data.auth && ![ "/login", "/register" ].includes( History.location.pathname ) ) {
       console.log( "Inside The Statement" );
-      window.location.href="/login"
-      // History.push( '/login' );
-    } else {
-      console.log ( 'Session Is Valid' );
+      window.location.href="/login";
     }
   }
 

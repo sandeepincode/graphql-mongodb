@@ -16,8 +16,7 @@ export function authenticate() {
     });
     /* For Testings */
     return dispatch({
-      type: FETCH_FAILURE,
-      payload: 'WOOPS',
+      type: FETCH_SUCCESS,
     });
     /** ************* */
     try {
