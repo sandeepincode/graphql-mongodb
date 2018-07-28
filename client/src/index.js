@@ -1,36 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  Router,
   Route,
   Switch,
 } from 'react-router-dom';
+import axios from 'axios';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import './index.css';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
-import history from './history';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
+import './index.css';
+import history from './history';
 import BasePage from './containers/basePage';
-import loginPage from './containers/login/loginPage';
-import registerPage from './containers/register/registerPage';
+import LoginPage from './containers/LoginPage/LoginPage';
+import RegisterPage from './containers/RegisterPage/RegisterPage';
 import NotFound from './containers/errorPage';
 
 // Redux
 import store from './redux/store';
 
-/* eslint-disable */
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <BasePage exact path="/">
-        <Route exact path="/login" component={loginPage} />
-        <Route path="/register" component={registerPage} />
-      </BasePage>
-    </Router>
-  </Provider>
-  , document.getElementById('root'));
+axios.interceptors.response.use ( response => {
+  console.log({ response });
+}, error => {
+  console.log ({ error });
+});
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'light',
+  },
+});
+
+const App = () => (
+  <MuiThemeProvider theme={theme}>
+    <Provider store={store}>
+      <ConnectedRouter history={history} basename="/">
+        <Switch>
+          <BasePage>
+            <Route path="/login" component={LoginPage}/>
+            <Route path="/register" component={RegisterPage}/>
+          </BasePage>
+        </Switch>
+      </ConnectedRouter>
+    </Provider>
+  </MuiThemeProvider>
+);
+
+ReactDOM.render(<App />, document.getElementById('root') );
 
 
 // <Route path="*" component={NotFound} />

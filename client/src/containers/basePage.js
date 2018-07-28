@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {
+  Redirect,
+} from 'react-router-dom';
 import Nav from '../components/basePage/nav';
 import { authenticate } from '../redux/reducers/basePage/authenticate';
 import History from '../history';
@@ -20,35 +22,32 @@ function mapStateToProps({ base }) {
   };
 }
 
-function mapDispatchToProps( dispatch ) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({ authenticate }, dispatch);
 }
 
 class basePage extends Component {
 
-  componentWillMount() {
-    this.props.authenticate();
-    if ( !this.props.data.auth && ![ "/login", "/register" ].includes( History.location.pathname ) ) {
-      console.log( "Inside The Statement" );
-      window.location.href="/login";
+    componentDidUpdate () {
+      this.props.authenticate();
+    }
+
+    componentDidMount () {
+    if (!this.props.data.auth && !['/LoginPage', '/RegisterPage'].includes(History.location.pathname)) {
+        //   console.log('Inside The Statement');
+        //   window.location.href = '/LoginPage';
+      console.log ( 'here');
+      return <Redirect to="/login"/>
     }
   }
 
   render() {
-    const theme = createMuiTheme({
-      palette: {
-        type: 'light',
-      },
-    });
-
     return (
-      <MuiThemeProvider theme={theme}>
-        <Nav>
-          { this.props.children }
-        </Nav>
-      </MuiThemeProvider>
+      <Nav>
+        {this.props.children}
+      </Nav>
     );
   }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )( basePage );
+export default connect(mapStateToProps, mapDispatchToProps)(basePage);

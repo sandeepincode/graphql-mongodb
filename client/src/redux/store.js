@@ -20,6 +20,10 @@ if (window.__REDUX_DEVTOOLS_EXTENSION__) {
   devTools = window.__REDUX_DEVTOOLS_EXTENSION__();
 }
 
+const authorisation = () => {
+
+};
+
 const store = createStore(
   reducers,
   compose(applyMiddleware(thunk, routerMiddleware(history)), devTools),
