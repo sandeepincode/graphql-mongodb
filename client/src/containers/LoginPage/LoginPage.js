@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Form from  '../../components/login/form';
+import Form from '../../components/LoginPage/Form';
 
 import {
   login,
@@ -32,7 +32,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-class loginPage extends Component {
+class LoginPage extends Component {
 
   updateValue = (event, type) => {
     const payload = {
@@ -59,4 +59,4 @@ class loginPage extends Component {
     );
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(loginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

@@ -2,13 +2,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import {
   Redirect,
 } from 'react-router-dom';
-import Nav from '../components/basePage/nav';
+import Nav from '../components/BasePage/Nav';
 import { authenticate } from '../redux/reducers/BasePage/authenticate';
-import History from '../history';
 
 function mapStateToProps({ base }) {
   const { ui, data } = base;

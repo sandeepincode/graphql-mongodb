@@ -6,6 +6,6 @@ export default class HomePage extends Component {
       <div>
         <h2>HOMEPAGE</h2>
       </div>
-    )
+    );
   }
 };

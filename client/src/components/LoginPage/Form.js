@@ -43,7 +43,7 @@ const styles = {
 	}
 };
 
-class form extends Component {
+class Form extends Component {
 
 	render() {
 		const { classes } = this.props;
@@ -108,8 +108,8 @@ class form extends Component {
 	}
 }
 
-form.propTypes = {
+Form.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(form);
+export default withStyles(styles)(Form);

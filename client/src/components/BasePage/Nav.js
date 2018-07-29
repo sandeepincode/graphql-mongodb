@@ -109,7 +109,7 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-class nav extends Component {
+class Nav extends Component {
 
   updatePage = (event, page) => {
     event.preventDefault();
@@ -165,10 +165,10 @@ class nav extends Component {
   }
 }
 
-nav.propTypes = {
+Nav.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(nav));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Nav));
 // export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(App));

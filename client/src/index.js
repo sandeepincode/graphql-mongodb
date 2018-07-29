@@ -14,7 +14,7 @@ import BasePage from './containers/BasePage';
 import HomePage from './containers/HomePage/HomePage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
-import NotFound from './containers/errorPage';
+import ErrorPage from './containers/ErrorPage';
 
 import configureStore from './redux/configureStore';
 import history from './history';
@@ -36,6 +36,7 @@ const App = () => (
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/home" component={HomePage} />
+            { /*<Route component={ErrorPage} />*/ }
           </BasePage>
         </Switch>
       </ConnectedRouter>
