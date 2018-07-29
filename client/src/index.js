@@ -10,20 +10,16 @@ import { ConnectedRouter } from 'react-router-redux';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import './index.css';
-import history from './history';
 import BasePage from './containers/basePage';
+import HomePage from './containers/HomePage/HomePage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import NotFound from './containers/errorPage';
 
-// Redux
-import store from './redux/store';
+import configureStore from './redux/configureStore';
+import history from './history';
 
-axios.interceptors.response.use ( response => {
-  console.log({ response });
-}, error => {
-  console.log ({ error });
-});
+const store = configureStore( history );
 
 const theme = createMuiTheme({
   palette: {
@@ -37,8 +33,9 @@ const App = () => (
       <ConnectedRouter history={history} basename="/">
         <Switch>
           <BasePage>
-            <Route path="/login" component={LoginPage}/>
-            <Route path="/register" component={RegisterPage}/>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/home" component={HomePage} />
           </BasePage>
         </Switch>
       </ConnectedRouter>

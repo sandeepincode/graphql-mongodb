@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import {
   Redirect,
 } from 'react-router-dom';
@@ -28,25 +29,34 @@ function mapDispatchToProps(dispatch) {
 
 class basePage extends Component {
 
-    componentDidUpdate () {
+  componentWillMount() {
+    if ( !this.props.data.auth ) {
       this.props.authenticate();
-    }
-
-    componentDidMount () {
-    if (!this.props.data.auth && !['/LoginPage', '/RegisterPage'].includes(History.location.pathname)) {
-        //   console.log('Inside The Statement');
-        //   window.location.href = '/LoginPage';
-      console.log ( 'here');
-      return <Redirect to="/login"/>
     }
   }
 
   render() {
+
+    const isPathAuth = ['/login', '/register'].includes(this.props.location.pathname);
+
+    if ( !this.props.data.auth && !isPathAuth ) {
+      return (
+        <Redirect to={'/login'}/>
+      );
+    }
+
+    if ( this.props.data.auth && isPathAuth ) {
+      return (
+        <Redirect to={'/home'}/>
+      );
+    }
+
     return (
       <Nav>
         {this.props.children}
       </Nav>
     );
+
   }
 }
 

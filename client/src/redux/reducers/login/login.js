@@ -17,14 +17,25 @@ export const updateValue = simpleAction(UPDATE_VALUE);
 
 export function login() {
   return async (dispatch, getState) => {
+
     dispatch({
       type: FETCH_REQUEST,
     });
+
     const { email, password } = getState().login.data.form;
+
     try {
       if (!_.isEmpty(email) || !_.isEmpty(password)) {
-        const variables = { email, password };
-        apolloFetch({ query, variables })
+
+        const variables = {
+          email,
+          password,
+        };
+
+        apolloFetch({
+          query,
+          variables,
+        })
           .then((data) => {
             return dispatch({
               type: FETCH_SUCCESS,

@@ -1,4 +1,5 @@
 import { createApolloFetch } from 'apollo-fetch';
+import { push } from 'react-router-redux';
 import query from './query';
 import {
   FETCH_REQUEST,
@@ -14,11 +15,7 @@ export function authenticate() {
     dispatch({
       type: FETCH_REQUEST,
     });
-    /* For Testings */
-    return dispatch({
-      type: FETCH_SUCCESS,
-    });
-    /** ************* */
+
     try {
       apolloFetch({ query })
         .then((data) => {
@@ -32,10 +29,12 @@ export function authenticate() {
             payload: 'SERVER RESPONSE: Auth Failed',
           });
         })
-        .catch(e => dispatch({
-          type: FETCH_FAILURE,
-          payload: e,
-        }));
+        .catch(e => {
+          return dispatch({
+            type: FETCH_FAILURE,
+            payload: e,
+          });
+        });
     } catch (e) {
       return dispatch({
         type: FETCH_FAILURE,

@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import history from '../history';
 
 import basePageReducer from './reducers/basePage/reducer';
 import loginReducer from './reducers/login/reducer';
@@ -15,18 +14,18 @@ const reducers = combineReducers({
   nav: navReducer,
 });
 
-let devTools = f => f;
-if (window.__REDUX_DEVTOOLS_EXTENSION__) {
-  devTools = window.__REDUX_DEVTOOLS_EXTENSION__();
-}
 
-const authorisation = () => {
+const configureStore = (browserHistory) => {
 
+  let devTools = f => f;
+  if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+    devTools = window.__REDUX_DEVTOOLS_EXTENSION__();
+  }
+
+  return createStore(
+    reducers,
+    compose(applyMiddleware(thunk, routerMiddleware(browserHistory)), devTools),
+  );
 };
 
-const store = createStore(
-  reducers,
-  compose(applyMiddleware(thunk, routerMiddleware(history)), devTools),
-);
-
-export default store;
+export default configureStore;
