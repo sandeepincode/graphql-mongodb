@@ -7,7 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Nav from '../components/basePage/nav';
-import { authenticate } from '../redux/reducers/basePage/authenticate';
+import { authenticate } from '../redux/reducers/BasePage/authenticate';
 import History from '../history';
 
 function mapStateToProps({ base }) {

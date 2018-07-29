@@ -6,7 +6,7 @@ import Form from  '../../components/login/form';
 import {
   login,
   updateValue,
-} from '../../redux/reducers/login/login';
+} from '../../redux/reducers/LoginPage/login';
 
 function mapStateToProps({ login }) {
   const { ui, data } = login;

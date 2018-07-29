@@ -5,7 +5,7 @@ import {
   redirectNav,
   openNav,
   closeNav,
-} from '../../redux/reducers/nav/reducer';
+} from '../../redux/reducers/Nav/reducer';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';

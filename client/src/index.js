@@ -10,7 +10,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import './index.css';
-import BasePage from './containers/basePage';
+import BasePage from './containers/BasePage';
 import HomePage from './containers/HomePage/HomePage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';

@@ -5,7 +5,7 @@ import Form from '../../components/register/form';
 import {
   register,
   updateValue,
-} from '../../redux/reducers/register/register';
+} from '../../redux/reducers/RegisterPage/register';
 
 function mapStateToProps({ register }) {
   const { ui, data } = register;

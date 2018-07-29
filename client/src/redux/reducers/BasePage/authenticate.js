@@ -1,5 +1,4 @@
 import { createApolloFetch } from 'apollo-fetch';
-import { push } from 'react-router-redux';
 import query from './query';
 import {
   FETCH_REQUEST,
@@ -15,7 +14,6 @@ export function authenticate() {
     dispatch({
       type: FETCH_REQUEST,
     });
-
     try {
       apolloFetch({ query })
         .then((data) => {
