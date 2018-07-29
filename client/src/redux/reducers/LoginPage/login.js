@@ -26,12 +26,10 @@ export function login() {
 
     try {
       if (!_.isEmpty(email) || !_.isEmpty(password)) {
-
         const variables = {
           email,
           password,
         };
-
         apolloFetch({
           query,
           variables,

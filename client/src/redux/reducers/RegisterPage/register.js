@@ -10,7 +10,7 @@ import {
   UPDATE_VALUE,
 } from './actions';
 
-const uri = 'https://localhost:3009/graphql';
+const uri = 'http://localhost:3009/graphql';
 const apolloFetch = createApolloFetch({ uri });
 
 export const updateValue = simpleAction(UPDATE_VALUE);
@@ -23,8 +23,7 @@ export function register() {
     const { email, firstName, secondName, password, passwordConf } = getState().register.data.form;
     try {
       if (!_.isEmpty(email) || !_.isEmpty(password)) {
-
-        if ( password !== passwordConf ) {
+        if (password !== passwordConf) {
           return dispatch({
             type: FETCH_FAILURE,
             payload: 'Passwords Do Not Match',
@@ -32,11 +31,22 @@ export function register() {
         }
 
         const requestData = {
-          email, firstName, secondName, password, passwordConf,
-        }
+          firstName,
+          secondName,
+          email,
+          password,
+        };
 
-        apolloFetch({ query, requestData })
+        console.log(requestData);
+
+        apolloFetch({
+          query,
+          requestData,
+        })
           .then((data) => {
+
+            console.log ( data );
+
             return dispatch({
               type: FETCH_SUCCESS,
               payload: data,

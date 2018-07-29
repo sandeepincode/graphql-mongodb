@@ -53,7 +53,7 @@ class LoginPage extends Component {
         <Form
           onChange={this.updateValue}
           login={this.props.login}
-          disabled={this.props.ui.loading}
+          disabled={ui.loading}
         />
       </div>
     );

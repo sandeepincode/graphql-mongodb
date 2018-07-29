@@ -34,7 +34,13 @@ export default {
     createUser: async (parent, args, {
       User, Session, UserAgent, IpAddress,
     }) => {
+
+      console.log(  User, Session, UserAgent, IpAddress, );
+
       const user = await new User(args).save();
+
+      console.log({ user });
+
       user._id = user._id.toString();
 
       new Session({

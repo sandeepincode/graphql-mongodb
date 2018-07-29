@@ -5,7 +5,6 @@ import {
   FETCH_SUCCESS,
   UPDATE_VALUE,
 } from './actions';
-import simpleAction from '../../util/simpleAction';
 
 const initialState = {
   ui: {
@@ -24,8 +23,6 @@ const initialState = {
   },
 };
 
-export const updateValue = simpleAction(UPDATE_VALUE);
-
 export default function reducer(state = initialState, { type, payload }) {
   switch (type) {
     case FETCH_REQUEST: {
@@ -41,7 +38,7 @@ export default function reducer(state = initialState, { type, payload }) {
           loading: { $set: false },
         },
         data: {
-          error: { $push: payload },
+          error: { $set: payload },
         },
       });
     }
@@ -51,7 +48,7 @@ export default function reducer(state = initialState, { type, payload }) {
           loading: { $set: false },
         },
         data: {
-          response: { $push: payload },
+          response: { $set: payload },
         },
       });
     }

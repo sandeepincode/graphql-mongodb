@@ -35,6 +35,13 @@ const app = express();
 app.use('/graphql', ...helperMiddleware, graphqlExpress((req) => {
   const UserAgent = req.headers['user-agent'];
   const IpAddress = req.connection.remoteAddress;
+
+  console.log({
+    UserAgent,
+    IpAddress,
+    body: req.body,
+  });
+
   return {
     schema,
     context: {
