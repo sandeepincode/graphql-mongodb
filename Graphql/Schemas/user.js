@@ -16,10 +16,10 @@ type Query {
 }
 type Mutation {
   createUser(
-  firstName: String!,
-  secondName: String!,
-  email: String!,
-  password: String!,
+    firstName: String!,
+    secondName: String!,
+    email: String!,
+    password: String!,
   ): User!
   deleteUser(
     _id: String!

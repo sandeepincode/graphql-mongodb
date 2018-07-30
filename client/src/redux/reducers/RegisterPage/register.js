@@ -29,33 +29,35 @@ export function register() {
             payload: 'Passwords Do Not Match',
           });
         }
-
-        const requestData = {
-          firstName,
-          secondName,
-          email,
-          password,
-        };
-
-        console.log(requestData);
-
-        apolloFetch({
-          query,
-          requestData,
+        fetch('/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            query,
+            variables: {
+              firstName,
+              secondName,
+              email,
+              password,
+            },
+          }),
         })
-          .then((data) => {
-
-            console.log ( data );
-
+          .then(r => r.json())
+          .then(data => {
+            if (!data) {
+              return dispatch({
+                type: FETCH_FAILURE,
+                payload: 'No Data From Response',
+              });
+            }
             return dispatch({
               type: FETCH_SUCCESS,
               payload: data,
             });
-          })
-          .catch(e => dispatch({
-            type: FETCH_FAILURE,
-            payload: e,
-          }));
+          });
       }
     } catch (e) {
       return dispatch({
