@@ -15,7 +15,7 @@ export default {
     login: async (parent, args, {
       User, Session, UserAgent, IpAddress,
     }) => {
-      // get user by email then com{pare password
+      // get user by email then compare password
       const user = await User.find({
         email: args.emailAddress,
       });
@@ -35,7 +35,7 @@ export default {
       User, Session, UserAgent, IpAddress,
     }) => {
 
-      console.log(  User, Session, UserAgent, IpAddress, );
+      console.log( { args } );
 
       const user = await new User(args).save();
 
