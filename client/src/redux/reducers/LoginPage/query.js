@@ -1,8 +1,6 @@
 export default `
-Query {
-	login (
-		$email: String!,
-		$password: String!
-	): [String]!
-}
-`;
+query Login ( $email: String!, $password: String! ) {
+  login ( email: $email, password: $password ) {
+    _id
+  }
+}`;

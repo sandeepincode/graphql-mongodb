@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { createApolloFetch } from 'apollo-fetch';
 import simpleAction from '../../util/simpleAction';
 import query from './query';
 
@@ -10,8 +9,7 @@ import {
   UPDATE_VALUE,
 } from './actions';
 
-const uri = 'https://localhost:3009/graphql';
-const apolloFetch = createApolloFetch({ uri });
+const uri = '/graphql';
 
 export const updateValue = simpleAction(UPDATE_VALUE);
 
@@ -26,25 +24,38 @@ export function login() {
 
     try {
       if (!_.isEmpty(email) || !_.isEmpty(password)) {
-        const variables = {
-          email,
-          password,
-        };
-        apolloFetch({
-          query,
-          variables,
-        })
-          .then((data) => {
-            return dispatch({
-              type: FETCH_SUCCESS,
-              payload: data,
-            });
-          })
-          .catch(e => dispatch({
-            type: FETCH_FAILURE,
-            payload: e,
-          }));
+        return dispatch({
+          type: FETCH_FAILURE,
+          payload: 'Please fill in all fields',
+        });
       }
+      fetch(uri, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables: {
+            email,
+            password,
+          },
+        }),
+      })
+        .then(r => r.json())
+        .then(data => {
+          if (!data) {
+            return dispatch({
+              type: FETCH_FAILURE,
+              payload: 'No Data From Response',
+            });
+          }
+          return dispatch({
+            type: FETCH_SUCCESS,
+            payload: data,
+          });
+        });
     } catch (e) {
       return dispatch({
         type: FETCH_FAILURE,

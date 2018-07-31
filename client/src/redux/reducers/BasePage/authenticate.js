@@ -1,4 +1,3 @@
-import { createApolloFetch } from 'apollo-fetch';
 import query from './query';
 import {
   FETCH_REQUEST,
@@ -6,8 +5,7 @@ import {
   FETCH_SUCCESS,
 } from './actions';
 
-const uri = 'https://localhost:3009/graphql';
-const apolloFetch = createApolloFetch({ uri });
+const uri = '/graphql';
 
 export function authenticate() {
   return async (dispatch) => {
@@ -15,22 +13,32 @@ export function authenticate() {
       type: FETCH_REQUEST,
     });
     try {
-      apolloFetch({ query })
+
+      return dispatch({
+        type: FETCH_FAILURE,
+      });
+
+      fetch(uri, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+        }),
+      })
+        .then(r => r.json())
         .then((data) => {
-          if (data.auth) {
+          if (!data) {
             return dispatch({
-              type: FETCH_SUCCESS,
+              type: FETCH_FAILURE,
+              payload: 'No Data From Response',
             });
           }
           return dispatch({
-            type: FETCH_FAILURE,
-            payload: 'SERVER RESPONSE: Auth Failed',
-          });
-        })
-        .catch(e => {
-          return dispatch({
-            type: FETCH_FAILURE,
-            payload: e,
+            type: FETCH_SUCCESS,
+            payload: data,
           });
         });
     } catch (e) {

@@ -18,7 +18,7 @@ const initialState = {
       password: '',
       passwordConf: '',
     },
-    error: '',
+    error: [],
     response: [],
   },
 };
@@ -30,6 +30,9 @@ export default function reducer(state = initialState, { type, payload }) {
         ui: {
           loading: { $set: true },
         },
+        data: {
+          error: { $set: [] },
+        },
       });
     }
     case FETCH_FAILURE: {
@@ -38,7 +41,7 @@ export default function reducer(state = initialState, { type, payload }) {
           loading: { $set: false },
         },
         data: {
-          error: { $set: payload },
+          error: { $push: payload },
         },
       });
     }
