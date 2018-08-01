@@ -57,7 +57,11 @@ export default function reducer(state = initialState, { type, payload }) {
     }
     case UPDATE_VALUE: {
       return update(state, {
+        ui: {
+          loading: { $set: false },
+        },
         data: {
+          error: { $set: [] },
           form: {
             [payload.type]: { $set: payload.value },
           },
