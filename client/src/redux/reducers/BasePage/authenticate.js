@@ -14,10 +14,6 @@ export function authenticate() {
     });
     try {
 
-      return dispatch({
-        type: FETCH_FAILURE,
-      });
-
       fetch(uri, {
         method: 'GET',
         headers: {

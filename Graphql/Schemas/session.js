@@ -8,7 +8,7 @@ type Session {
   created: String!
 }
  type Query {
-   findSession(_id: String!): String!
+   findSession(): String!
  }
  type Mutation {
    deleteSession(_id: String!): Boolean!

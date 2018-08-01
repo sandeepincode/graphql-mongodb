@@ -34,22 +34,14 @@ export default {
     createUser: async (parent, args, {
       User, Session, UserAgent, IpAddress,
     }) => {
-
-      console.log( { args } );
-
       const user = await new User(args).save();
-
-      console.log({ user });
-
       user._id = user._id.toString();
-
       new Session({
         user_id: user._id,
         userAgent: UserAgent,
         ip: IpAddress,
         active: new Date(),
       }).save();
-
       return user;
     },
     deleteUser: async (parent, args, { User, Session }) => {
