@@ -1,16 +1,16 @@
-
 export default `
 type Session {
-  user_id: String!
-  userAgent: String!
-  ip: String!
-  active: String!
-  created: String!
+  _id: String! @unique
+  user_id: String @unique
+  userAgent: String
+  ip: String
+  active: String
+  created: String
 }
  type Query {
-   findSession(): String!
+   findSession(_id: String!): Session!
  }
  type Mutation {
-   deleteSession(_id: String!): Boolean!
+   deleteSession(user_id: String!): Session!
  }
 `;

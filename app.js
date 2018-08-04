@@ -4,17 +4,16 @@ import mongoose from 'mongoose';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 
-import typeDefs from './Graphql/typeDefs';
-import resolvers from './Graphql/resolver';
+import typeDefs from './Graphql/mergeTypes';
+import resolver from './Graphql/resolver';
 
 import { User } from './Mongoose/Schemas/user';
 import { Session } from './Mongoose/Schemas/session';
 
 mongoose.connect('mongodb://localhost/test');
-
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolver,
 });
 
 const helperMiddleware = [
@@ -32,15 +31,10 @@ const helperMiddleware = [
 const PORT = 3009;
 const app = express();
 
-app.use('/graphql', ...helperMiddleware, graphqlExpress((req) => {
+app.use('/graphql', ...helperMiddleware, graphqlExpress((req, res) => {
+
   const UserAgent = req.headers['user-agent'];
   const IpAddress = req.connection.remoteAddress;
-
-  console.log({
-    UserAgent,
-    IpAddress,
-    body: req.body,
-  });
 
   return {
     schema,

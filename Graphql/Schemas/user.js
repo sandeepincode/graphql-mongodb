@@ -7,7 +7,6 @@ type User {
   registered: String!
 }
 type Query {
-  allUsers: [User!]!
   findUser(_id: String!): [User!]!
   login(
     email: String!,
@@ -19,10 +18,10 @@ type Mutation {
     firstName: String!,
     secondName: String!,
     email: String!,
-    password: String!,
+    password: String!
   ): User!
   deleteUser(
     _id: String!
-  ): Boolean!
+  ): Session!
 }
 `;

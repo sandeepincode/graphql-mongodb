@@ -1,10 +1,15 @@
 export default {
   Query: {
-    findSession: async (parent, args, { User, Session }) => {
+    findSession: async (parent, args = {}, { User, Session }) => {
+
+      console.log('inside the find session function');
+
+      console.log({ args });
+
       const session = await Session.find(args);
-      if (!session) {
-        return false;
-      }
+
+      if (!session) throw new Error('Session does not exist.');
+
       return session.map((x) => {
         x._id = x._id.toString();
         return x;
@@ -12,12 +17,12 @@ export default {
     },
   },
   Mutation: {
-    deleteUSession: async (parent, args, { User, Session }) => {
-      const session = await Session.remove(args);
-      session.remove({
-        user_id: args._id,
-      });
-      return !(session.n && session.ok);
+    deleteSession: async (parent, { user_id }, { User, Session }) => {
+      const session = await Session.remove({ user_id });
+
+      console.log ( session );
+
+      return session;
     },
   },
 };

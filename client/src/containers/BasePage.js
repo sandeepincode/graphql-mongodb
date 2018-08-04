@@ -25,11 +25,12 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ authenticate }, dispatch);
 }
 
-class basePage extends Component {
+class BasePage extends Component {
 
   componentWillMount() {
     if ( !this.props.data.auth ) {
-      this.props.authenticate();
+      console.log ( 'Running Auth Test!' );
+      // this.props.authenticate();
     }
   }
 
@@ -58,4 +59,4 @@ class basePage extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(basePage);
+export default connect(mapStateToProps, mapDispatchToProps)(BasePage);

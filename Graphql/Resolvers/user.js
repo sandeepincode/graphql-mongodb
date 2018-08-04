@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 
 export default {
   Query: {
-    findUser: async (parent, args, { User }) => {
+    findUser: async (parent, args = {}, { User }) => {
       const users = await User.find(args);
       if (!users) {
         return false;
@@ -44,18 +44,14 @@ export default {
       }).save();
       return user;
     },
-    deleteUser: async (parent, args, { User, Session }) => {
-      const user = await User.remove(args);
+    deleteUser: async (parent, { _id }, { User, Session }) => {
 
-      Session.remove({
-        user_id: args._id,
-      });
+      const user = await User.remove({ _id });
+      const session = await Session.remove({ user_id: _id });
 
-      if (user.n && user.ok) {
-        return false;
-      }
+      console.log('deleting user');
 
-      return true;
+      return !(user.n && user.ok) && !(session.n && session.ok);
     },
   },
 };
